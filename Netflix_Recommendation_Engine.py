@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
 
 # In[1]:
 
@@ -22,13 +20,15 @@ netflix_dataset = pd.read_csv('combined_data_1.txt', header = None, names = ['Cu
 # In[3]:
 
 
-netflix_dataset.head()  #Printing 1st 5 readings#
+netflix_dataset.head()  
+#Printing 1st 5 readings#
 
 
 # In[4]:
 
 
-netflix_dataset.dtypes #Data type for values of netflix_dataset#
+netflix_dataset.dtypes 
+#Data type for values of netflix_dataset#
 #Object means String data type#
 
 
@@ -81,7 +81,8 @@ movie_count
 
 
 #To get the no of movies from movie_count and eliminating the Cust_ID value we use#
-movie_count = netflix_dataset.isnull().sum()[1]#WE are using only the 1st index value#
+movie_count = netflix_dataset.isnull().sum()[1]
+#WE are using only the 1st index value#
 movie_count
 
 
@@ -156,14 +157,16 @@ df_nan.shape
 # In[20]:
 
 
-df_nan.head() #The positions of Movie ID in netflix_dataset stored in df_nan#
+df_nan.head() 
+#The positions of Movie ID in netflix_dataset stored in df_nan#
 #0-547->Movie_Id_1, 548-693->Movie_ID_2, ........#
 
 
 # In[21]:
 
 
-df_nan = df_nan.reset_index()#By using reset func we are getting the index values in a column#
+df_nan = df_nan.reset_index()
+#By using reset func we are getting the index values in a column#
 df_nan.head()
 
 
@@ -173,7 +176,8 @@ df_nan.head()
 #Creating a numpy array that will contain rating of movie 1 from o to 547, for 2 from 548 to 694 and so on#
 movie_np=[]
 movie_id=1
-for i,j in zip(df_nan['index'][1:], df_nan['index'][:-1]): #zip func helps convert data in df_nan into a tuple#
+for i,j in zip(df_nan['index'][1:], df_nan['index'][:-1]):
+   #zip func helps convert data in df_nan into a tuple#
    temp = np.full((1,i-j-1),movie_id)
    movie_np = np.append(movie_np, temp)
    movie_id+=1
@@ -195,15 +199,18 @@ x = zip(df_nan['index'][1:], df_nan['index'][:-1])#Ex of working of a tuple#
 # In[24]:
 
 
-tuple(x) #Making it a tuple#
+tuple(x) 
+#Making it a tuple#
 #Show that from o to 547 is movie_id1, from 548 to 694 is movie_id2 and so on till end of the df_nan#
 
 
 # In[25]:
 
 
-temp = np.full((1,547),1) #working of full func#
-temp #We are initailizing all the values as 1 from 1-547#
+temp = np.full((1,547),1) 
+#working of full func#
+temp 
+#We are initailizing all the values as 1 from 1-547#
 
 
 # In[26]:
@@ -242,11 +249,13 @@ dataset_movie_summary.index = dataset_movie_summary.index.map(int)
 # In[30]:
 
 
-#Creating a benchmark basically by these statements we are elliminating the poor reviews posted and are considering
-#only the positive reviews
-movie_benchmark = round(dataset_movie_summary['count'].quantile(0.7),0) #Do not take 0.5 it will divide the table into 2 parts#
+#Creating a benchmark basically by these statements we are elliminating the poor reviews posted and are considering#
+#only the positive reviews#
+movie_benchmark = round(dataset_movie_summary['count'].quantile(0.7),0) 
+#Do not take 0.5 it will divide the table into 2 parts#
 #The data is divided into a 70:30 ratio by the quantile func#
-movie_benchmark#By taking 0.7 we are dividing the table by 70% in  the count column#
+movie_benchmark
+#By taking 0.7 we are dividing the table by 70% in  the count column#
 
 
 # In[31]:
@@ -348,8 +357,8 @@ df_title.head(20)
 # In[44]:
 
 
-#Helps insatll the surprise package#
-#pip install scikit-surprise
+#Helps install the surprise package#
+#pip install scikit-surprise#
 
 
 # In[45]:
@@ -473,8 +482,6 @@ print(user_712664.head(10))
 user_712664 = user_712664.sort_values('Estimate_Score', ascending=False)
 print(user_712664.head(10))
 
-
-# In[ ]:
 
 
 
